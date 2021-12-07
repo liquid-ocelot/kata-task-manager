@@ -30,3 +30,31 @@ def test_parse_input_quit():
     expected = ("q")
     actual = parser("q")
     assert expected == actual
+
+def test_add_task():
+    tasklist = taskClass()
+    tasklist.add("task")
+    expected = [("task", False)]
+    assert expected == tasklist.get()
+
+def test_remove_task():
+    tasklist = taskClass()
+    tasklist.add("task")
+    tasklist.remove(1)
+    expected = []
+    assert expected == tasklist.get()
+
+def test_check_task():
+    tasklist = taskClass()
+    tasklist.add("task")
+    tasklist.fun(1)
+    expected = [("task", True)]
+    assert expected == tasklist.get()
+
+def test_uncheck_task():
+    tasklist = taskClass()
+    tasklist.add("task")
+    tasklist.fun(1)
+    tasklist.fun2(1)
+    expected = [("task", False)]
+    assert expected == tasklist.get()
