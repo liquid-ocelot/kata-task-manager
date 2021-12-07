@@ -1,4 +1,13 @@
 
+def fun(str):
+    if str == "q":
+        return ("q")
+    elif len(str) > 0:
+        if str[0] == "+":
+            return (str[0], str[2:])
+        elif str[0] in ["-", "x", "o"]:
+            return (str[0], int(str[2:]))
+        
 
 
 
