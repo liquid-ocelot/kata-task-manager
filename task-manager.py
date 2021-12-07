@@ -11,7 +11,7 @@ def parser(text):
         return (operator, index)
         
 
-class taskClass:
+class TaskList:
 
     def __init__(self) -> None:
         self.list = []
@@ -26,12 +26,12 @@ class taskClass:
         real_index = index - 1
         del self.list[real_index]
 
-    def fun(self, index):
+    def check_task(self, index):
         real_index = index - 1
         description = self.list[real_index][0]
         self.list[real_index] = (description, True)
 
-    def fun2(self, index):
+    def uncheck_task(self, index):
         real_index = index - 1
         description = self.list[real_index][0]
         self.list[real_index] = (description, False)
@@ -59,29 +59,29 @@ def test_parse_input_quit():
     assert expected == actual
 
 def test_add_task():
-    tasklist = taskClass()
+    tasklist = TaskList()
     tasklist.add("task")
     expected = [("task", False)]
     assert expected == tasklist.get()
 
 def test_remove_task():
-    tasklist = taskClass()
+    tasklist = TaskList()
     tasklist.add("task")
     tasklist.remove(1)
     expected = []
     assert expected == tasklist.get()
 
 def test_check_task():
-    tasklist = taskClass()
+    tasklist = TaskList()
     tasklist.add("task")
-    tasklist.fun(1)
+    tasklist.check_task(1)
     expected = [("task", True)]
     assert expected == tasklist.get()
 
 def test_uncheck_task():
-    tasklist = taskClass()
+    tasklist = TaskList()
     tasklist.add("task")
-    tasklist.fun(1)
-    tasklist.fun2(1)
+    tasklist.check_task(1)
+    tasklist.uncheck_task(1)
     expected = [("task", False)]
     assert expected == tasklist.get()
