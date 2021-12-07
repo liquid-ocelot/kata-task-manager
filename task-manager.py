@@ -1,5 +1,5 @@
 
-def fun(str):
+def parser(str):
     if str == "q":
         return ("q")
     elif len(str) > 0:
@@ -18,15 +18,15 @@ def fun(str):
 
 def test_parse_input_add():
     expected = ("+", "test test")
-    actual = fun("+ test test")
+    actual = parser("+ test test")
     assert expected == actual
 
 def test_parse_input_remove():
     expected = ("-", 1)
-    actual = fun("- 1")
+    actual = parser("- 1")
     assert expected == actual
 
 def test_parse_input_quit():
     expected = ("q")
-    actual = fun("q")
+    actual = parser("q")
     assert expected == actual
