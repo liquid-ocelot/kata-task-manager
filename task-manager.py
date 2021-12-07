@@ -1,4 +1,6 @@
 
+
+
 def parser(text):
     if text == "q":
         return ("q")
@@ -36,7 +38,27 @@ class TaskList:
         description = self.list[real_index][0]
         self.list[real_index] = (description, False)
 
+    def fun(self, console):
+        if len(self.list) == 0:
+            console.print("No task yet")
+        else:
+            for i in range(len(self.list)):
+                number = i + 1
+                status = self.list[i][1]
+                description = self.list[i][0]
+                if(status):
+                    console.print("%s [x] %s" % (number, description))
+                else:
+                    console.print("%s [ ] %s" % (number, description))
 
+
+class ConsoleInterface():
+
+    def __init__(self) -> None:
+        self.output = []
+
+    def print(self, str):
+        self.output.append(str)
 
 ##########
 ###TEST###
