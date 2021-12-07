@@ -121,3 +121,10 @@ def test_display_list():
     tasklist.display(console)
     expected = ["No task yet", "1 [ ] Learn Python"]
     assert expected == console.output
+
+
+def test_run_loop():
+    console = FakeConsole("+ Learn Python", "x 1", "q")
+    run(console)
+    expected = ["No task yet", "1 [ ] Learn Python", "1 [x] Learn Python", "Bye !"]
+    assert expected == console.output
