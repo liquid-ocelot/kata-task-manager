@@ -1,13 +1,40 @@
 
-def parser(str):
-    if str == "q":
+def parser(text):
+    if text == "q":
         return ("q")
-    elif len(str) > 0:
-        if str[0] == "+":
-            return (str[0], str[2:])
-        elif str[0] in ["-", "x", "o"]:
-            return (str[0], int(str[2:]))
+    elif len(text) > 0 and text[0] == "+":
+        description = text[2:]
+        return ("+", description)
+    elif len(text) > 0 and text[0] in ["-", "x", "o"]:
+        operator = text[0]
+        index = int(text[2:])
+        return (operator, index)
         
+
+class taskClass:
+
+    def __init__(self) -> None:
+        self.list = []
+
+    def add(self, str):
+        self.list.append((str, False))
+
+    def get(self):
+        return self.list
+
+    def remove(self, index):
+        real_index = index - 1
+        del self.list[real_index]
+
+    def fun(self, index):
+        real_index = index - 1
+        description = self.list[real_index][0]
+        self.list[real_index] = (description, True)
+
+    def fun2(self, index):
+        real_index = index - 1
+        description = self.list[real_index][0]
+        self.list[real_index] = (description, False)
 
 
 
