@@ -38,7 +38,7 @@ class TaskList:
         description = self.list[real_index][0]
         self.list[real_index] = (description, False)
 
-    def fun(self, console):
+    def display(self, console):
         if len(self.list) == 0:
             console.print("No task yet")
         else:
@@ -52,13 +52,18 @@ class TaskList:
                     console.print("%s [ ] %s" % (number, description))
 
 
-class ConsoleInterface():
+class FakeConsole():
 
     def __init__(self) -> None:
         self.output = []
 
     def print(self, str):
         self.output.append(str)
+
+class Console():
+
+    def print(self, str):
+        print(str)
 
 ##########
 ###TEST###
@@ -109,10 +114,10 @@ def test_uncheck_task():
     assert expected == tasklist.get()
 
 def test_display_list():
-    console = ConsoleInterface()
+    console = FakeConsole()
     tasklist = TaskList()
-    tasklist.fun(console)
+    tasklist.display(console)
     tasklist.add("Learn Python")
-    tasklist.fun(console)
+    tasklist.display(console)
     expected = ["No task yet", "1 [ ] Learn Python"]
     assert expected == console.output
