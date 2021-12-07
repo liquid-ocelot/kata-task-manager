@@ -52,18 +52,46 @@ class TaskList:
                     console.print("%s [ ] %s" % (number, description))
 
 
-class FakeConsole():
+class FakeConsole:
 
-    def __init__(self) -> None:
+    def __init__(self, *args) -> None:
         self.output = []
+        self.input = list(args)
+        self.current_input = 0
 
     def print(self, str):
         self.output.append(str)
 
-class Console():
+    def get_input(self):
+        self.current_input += 1
+        return self.input[self.current_input - 1]
+
+class Console:
 
     def print(self, str):
         print(str)
+
+    def get_input(self):
+        return input()
+
+
+def run(console):
+    tasklist = TaskList()
+    while(True):
+        tasklist.display(console)
+        user_input = parser(console.get_input())
+        if user_input == "q":
+            break
+        elif user_input[0] == "+":
+            tasklist.add(user_input[1])
+        elif user_input[0] == "-":
+            tasklist.remove(user_input[1])
+        elif user_input[0] == "x":
+            tasklist.check_task(user_input[1])
+        elif user_input[0] == "o":
+            tasklist.uncheck_task(user_input[1])
+    console.print("Bye !")
+
 
 ##########
 ###TEST###
