@@ -92,6 +92,9 @@ def run(console):
             tasklist.uncheck_task(user_input[1])
     console.print("Bye !")
 
+if __name__ == "__main__":
+    run(Console())
+
 
 ##########
 ###TEST###
