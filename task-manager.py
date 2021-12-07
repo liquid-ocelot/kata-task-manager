@@ -85,3 +85,12 @@ def test_uncheck_task():
     tasklist.uncheck_task(1)
     expected = [("task", False)]
     assert expected == tasklist.get()
+
+def test_display_list():
+    console = ConsoleInterface()
+    tasklist = TaskList()
+    tasklist.fun(console)
+    tasklist.add("Learn Python")
+    tasklist.fun(console)
+    expected = ["No task yet", "1 [ ] Learn Python"]
+    assert expected == console.output
